@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<?php require "db.php"; ?>
 <html>
   <head>
     <title>Bootstrap Admin Theme v3</title>
@@ -89,6 +88,16 @@
 		  </div>
 
 <?PHP
+try
+      {
+       $bdd = new PDO('mysql:host=localhost;dbname=adherent', 'root', 'root');
+       $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      }
+    catch(Exception $e)
+     {
+      die('Erreur : '.$e->getMessage());
+     }
+	 
 	 $reponse = $bdd->query('SELECT * FROM `reglementcotisation` WHERE `Supprimer`!= 0 ');
 ?>
  

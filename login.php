@@ -16,18 +16,7 @@
     <![endif]-->
   </head>
   <body class="login-bg">
-  	<div class="header">
-	     <div class="container">
-	        <div class="row">
-	           <div class="col-md-12">
-	              <!-- Logo -->
-	              <div class="logo">
-	                 <h1><a href="index.html">AGRUR</a></h1>
-	              </div>
-	           </div>
-	        </div>
-	     </div>	 
-	</div>
+  	<?php include('/includes/header.php') ?>
 	<div class="page-content container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -35,6 +24,12 @@
 					<form action="connexion.php" method="post" class="box">
 			            <div class="content-wrap">
 			                <h6>Connexion</h6>
+			                <label>Vous êtes :</label>
+			                <select class="form-control" id="select-1" name="typeUtilisateur">
+								<option value="Producteur">Producteur</option>
+								<option value="Client">Client</option>
+								<option value="Producteur">Administrateur</option>
+							</select>
 			                <input class="form-control" type="text" placeholder="Nom Utilisateur " name="login">
 			                <input class="form-control" type="password" placeholder="Mot de passe" name="mdp">
 							<p id="fail"></p>

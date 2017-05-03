@@ -1,25 +1,41 @@
-<?php require "db.php"; ?>
+<?php require "/includes/db.php"; ?>
 <?php
+$typeUtilisateur = $_POST['typeUtilisateur'];
 $login = $_POST['login'];
 $pass = $_POST['mdp'];
 
-$req = $bdd->prepare('SELECT IdPro,grade FROM producteur WHERE nomUtilisateur = :login AND mdp = :pass');
+if($typeUtilisateur == "Producteur"){
+	$req = $bdd->prepare('SELECT IdPro,grade FROM Producteur WHERE nomUtilisateur = :login AND mdp = :pass');
+}
+else {
+	$req = $bdd->prepare('SELECT id_Client,grade FROM Client WHERE nomUtilisateur = :login AND mdp = :pass');
+}
 $req->execute(array(
     'login' => $login,
     'pass' => $pass));
 	$resultat = $req->fetch();
-	if (!$resultat)
-{
-    echo "Mauvais identifiant ou mot de passe !".'</div></body></html>';
-	include('login.php');
-}
-else
-{
-    session_start();
-    $_SESSION['id'] = $resultat['IdPro'];
-	$_SESSION['grade'] = $resultat['grade'];
-    echo 'Vous êtes connecté !';
-	echo $resultat['grade'];
-	echo $resultat['IdPro'];
+	if (!$resultat){
+    	echo "Mauvais identifiant ou mot de passe !";
+		include('login.php');
 	}
+	else if($resultat['grade']==3){
+		echo "Votre compte a été rejeté par l'administrateur, veuillez vous recréer un compte avec des informations en adéquation avec le mail que vous a envoyé l'administrateur";
+		include('login.php');
+	}
+	else if($resultat['grade']==2){
+		echo "Votre compte est en cours d'approbation par nos administrateurs";
+		include('login.php');
+	}
+	else if(($resultat['grade']==1)||($resultat['grade']==9999)){
+	    session_start();
+	    if($typeUtilisateur == "Producteur"){
+			$_SESSION['id'] = $resultat['IdPro'];
+		}
+		else {
+			$_SESSION['id'] = $resultat['id_Client'];
+		}
+		
+		$_SESSION['grade'] = $resultat['grade'];
+		header('Location: consul.php');    
+		}
 ?>

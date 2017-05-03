@@ -1,0 +1,1 @@
+<div class="panel-title"><img src="/images/logo.png" style="width:180px;height:228px;"></div>
