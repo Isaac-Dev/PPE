@@ -1,0 +1,19 @@
+<resources>
+    <!-- Zone aplication-->
+    <string name="app_name">AgrurCollect</string>
+    <!-- Zone login -->
+    <string name="login">Login</string>
+    <string name="password">mot de passe </string>
+    <string name="accept">Valider</string>
+    <!-- Zone Homepage -->
+    <string name="add_verger">Ajouter un nouveau verger</string>
+    <string name="show_verger">Afficher les vergers</string>
+    <!-- Zone Ajouter verger et Liste de verger -->
+    <string name="id">n°</string>
+    <string name="variete">Variété</string>
+    <string name="superficie">Superficie</string>
+    <string name="localisation">Localisation</string>
+    <string name="nb_arbres">Nombre d\'arbres(hec)</string>
+    <string name="quit">Quitter</string>
+    <string name="btt_add_verger">Ajouter</string>
+</resources>
